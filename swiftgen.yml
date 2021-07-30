@@ -1,0 +1,10 @@
+input_dir: PROJECT_NAME/Resources/
+output_dir: PROJECT_NAME/Generated/
+strings:
+  inputs: Base.lproj
+  filter: .+\.strings$
+  outputs:
+    - templateName: structured-swift5
+      output: Strings.swift
+      params:
+          enumName: Strings

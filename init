@@ -1,0 +1,36 @@
+#!/bin/bash
+
+TEMPLATE_FILES_CREATION_DATE="30\/07\/21"
+
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+
+    case $key in
+        -n|--name)
+            PROJECT_NAME="$2"
+            shift
+            shift
+            ;;
+        --help)
+            echo "Initial setup script for Xcode project template"
+            echo
+            echo
+            echo " --name       New project name"
+            echo
+            echo " --help       Show this help message and exit"
+            exit
+            ;;
+        *)
+            echo "$1 is not a valid option."
+            exit
+            ;;
+    esac
+done
+
+ls *.yml Podfile | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
+find -E Source -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
+find -E Source -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/${TEMPLATE_FILES_CREATION_DATE}/$(date '+%d\/%m\/%y')/g"
+mv Source $PROJECT_NAME
+rm init
+xcodegen && pod install
