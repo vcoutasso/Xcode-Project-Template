@@ -28,12 +28,12 @@ do
     esac
 done
 
-ls *.yml Podfile | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
-find -E Source -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
-find -E Source -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/${TEMPLATE_FILES_CREATION_DATE}/$(date '+%d\/%m\/%y')/g"
-mv Source $PROJECT_NAME
-echo $PROJECT_NAME > README.md
-xcodegen && pod install
+ls Makefile App/Podfile App/project.yml config/*.yml | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
+find -E App/Project/Sources -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
+find -E App/Project/Sources -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/${TEMPLATE_FILES_CREATION_DATE}/$(date '+%d\/%m\/%y')/g"
+mv App/Project App/$PROJECT_NAME
+echo "# $PROJECT_NAME" > README.md
+make generate
 rm -rf .git
 git init
 rm init
