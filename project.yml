@@ -6,7 +6,7 @@ settings:
 options:
   bundleIdPrefix: com.vcoutasso
   deploymentTarget:
-    iOOS: 14.0
+    iOS: 14.0
 
 targets:
   PROJECT_NAME:
