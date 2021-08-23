@@ -29,8 +29,8 @@ do
 done
 
 ls Makefile App/Podfile App/*.yml | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
-find -E App/Project/Sources -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
-find -E App/Project/Sources -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/${TEMPLATE_FILES_CREATION_DATE}/$(date '+%d\/%m\/%y')/g"
+find -E App/Project -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
+find -E App/Project -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/${TEMPLATE_FILES_CREATION_DATE}/$(date '+%d\/%m\/%y')/g"
 mv App/Project App/$PROJECT_NAME
 echo "# $PROJECT_NAME" > README.md
 make generate
