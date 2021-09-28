@@ -28,7 +28,7 @@ do
     esac
 done
 
-ls Makefile App/Podfile config/*.yml | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
+ls Makefile App/Podfile App/*.yml config/*.yml | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
 find -E App/Project -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
 find -E App/Project -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/${TEMPLATE_FILES_CREATION_DATE}/$(date '+%d\/%m\/%y')/g"
 mv App/Project App/$PROJECT_NAME
