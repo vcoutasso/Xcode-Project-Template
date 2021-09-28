@@ -2,23 +2,23 @@ name: PROJECT_NAME
 
 settings:
   DEVELOPMENT_TEAM: H7BM7N56V5
+  CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
 
 options:
   bundleIdPrefix: com.vcoutasso
-  deploymentTarget:
-    iOS: 14.0
 
 targets:
   PROJECT_NAME:
     type: application
     platform: iOS
+    deploymentTarget: 14.0
     sources:
       - path: PROJECT_NAME
     preBuildScripts:
       - name: SwiftLint
         script: |
-          "${PODS_ROOT}/SwiftLint/swiftlint"
+          "${PODS_ROOT}/SwiftLint/swiftlint" --config ../config/swiftlint.yml
       - name: SwiftGen
         script: |
-          "${PODS_ROOT}/SwiftGen/bin/swiftgen"
+          "${PODS_ROOT}/SwiftGen/bin/swiftgen" config run --config ../config/swiftgen.yml
 
