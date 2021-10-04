@@ -1,13 +1,19 @@
 input_dir: ../App/PROJECT_NAME/Resources/
 output_dir: ../App/PROJECT_NAME/Resources/Generated/
 strings:
-  inputs: Base.lproj
-  filter: .+\.strings$
-  outputs:
-    - templateName: structured-swift5
-      output: Strings.swift
-      params:
+  - inputs: Strings.strings
+    outputs:
+      - templateName: structured-swift5
+        output: Strings.swift
+        params:
           enumName: Strings
+  - inputs: Base.lproj
+    filter: .+\.strings$
+    outputs:
+      - templateName: structured-swift5
+        output: Localizable.swift
+        params:
+          enumName: Localizable
 xcassets:
   inputs: Assets.xcassets
   outputs:
