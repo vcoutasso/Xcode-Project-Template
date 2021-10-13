@@ -28,6 +28,15 @@ do
     esac
 done
 
+
+while true; do
+    read -p "Choose framework [UIKit/SwiftUI]: " yn
+    case $yn in
+        [Uu][Ii][Kk][Ii][Tt]) rm -rf App/SwiftUI ; mv App/UIKit App/Project ; break ;;
+        [Ss][Ww][Ii][Ff][Tt][Uu][Ii]) rm -rf App/UIKit ; mv App/SwiftUI App/Project break ;;
+    esac
+done
+
 ls Makefile App/Podfile App/*.yml config/*.yml | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
 find -E App/Project -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/PROJECT_NAME/${PROJECT_NAME}/g"
 find -E App/Project -type f -regex '.*\.(swift|strings)' | xargs sed -i '' "s/${TEMPLATE_FILES_CREATION_DATE}/$(date '+%d\/%m\/%y')/g"
