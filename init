@@ -34,7 +34,7 @@ while true; do
     read -p "Choose framework [UIKit/SwiftUI]: " yn
     case $yn in
         [Uu][Ii][Kk][Ii][Tt]) rm -rf App/SwiftUI ; mv App/UIKit App/Project ; break ;;
-        [Ss][Ww][Ii][Ff][Tt][Uu][Ii]) rm -rf App/UIKit ; mv App/SwiftUI App/Project ; break ;;
+        [Ss][Ww][Ii][Ff][Tt][Uu][Ii]) rm -rf App/UIKit ; mv App/SwiftUI App/Project ; sed -i '' "/pod 'SnapKit'/d" App/Podfile ; break ;;
     esac
 done
 
