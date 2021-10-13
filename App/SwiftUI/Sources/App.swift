@@ -1,5 +1,5 @@
 //
-//  PROJECT_NAMEApp.swift
+//  App.swift
 //  PROJECT_NAME
 //
 //  Created by Vinícius Couto on 30/07/21.
